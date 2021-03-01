@@ -1,6 +1,5 @@
 package ResouceIP;
 
-import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -9,14 +8,13 @@ public class IPLookUP {
 	private String url;
 	public Document doc;
 
-	public IPLookUP(String IPaddress) throws HttpStatusException {
+	public IPLookUP(String IPaddress) throws Exception {
 		url = "https://whatismyipaddress.com/ip/" + IPaddress;
 		try {
 			doc = Jsoup.connect(url).get();
 			details();
 		} catch (Exception e) {
-			throw new HttpStatusException("IPAddress not found", 404, url);
-
+			throw e;
 		}
 	}
 
